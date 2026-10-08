@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Sunny Trade" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Sunny Trade AI</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar safe-top">
+      <div>
+        <div class="brand">☀️ Sunny Trade AI</div>
+        <div class="sub" id="statusLine">نسخه آزمایشی آیفون • پول واقعی غیرفعال</div>
+      </div>
+      <button id="refreshBtn" class="icon-btn" aria-label="به‌روزرسانی">↻</button>
+    </header>
+
+    <main>
+      <section class="hero card">
+        <div class="hero-grid">
+          <div>
+            <span class="label">سرمایه آزمایشی</span>
+            <div class="big" id="equity">$1,000.00</div>
+          </div>
+          <div>
+            <span class="label">سود/ضرر باز</span>
+            <div class="medium" id="openPnl">$0.00</div>
+          </div>
+          <div>
+            <span class="label">معاملات باز</span>
+            <div class="medium" id="openCount">0</div>
+          </div>
+          <div>
+            <span class="label">حالت داده</span>
+            <div class="medium" id="dataModeLabel">Live</div>
+          </div>
+        </div>
+        <div class="safety">این نسخه فقط Paper Trading است؛ هیچ کلید، کیف پول یا پول واقعی وارد نکن.</div>
+      </section>
+
+      <section id="scannerView" class="view active">
+        <div class="section-title">
+          <div><h2>اسکن بازار</h2><p>۸ بازار • تحلیل ۱ ساعته</p></div>
+          <button id="scanBtn" class="primary">تحلیل بازار</button>
+        </div>
+        <div id="marketGrid" class="market-grid"></div>
+      </section>
+
+      <section id="positionsView" class="view">
+        <div class="section-title"><div><h2>معاملات باز</h2><p>Paper Trading</p></div></div>
+        <div id="positionsList" class="stack"></div>
+      </section>
+
+      <section id="historyView" class="view">
+        <div class="section-title"><div><h2>تاریخچه</h2><p>نتیجه معاملات بسته‌شده</p></div></div>
+        <div id="historyList" class="stack"></div>
+      </section>
+
+      <section id="settingsView" class="view">
+        <div class="section-title"><div><h2>تنظیمات</h2><p>برای تست روزانه</p></div></div>
+        <div class="card form-card">
+          <label>موجودی آزمایشی شروع</label>
+          <input id="startingBalance" type="number" min="10" step="10" value="1000" />
+          <label>حداکثر مبلغ هر معامله</label>
+          <input id="maxTrade" type="number" min="5" step="5" value="100" />
+          <label>کارمزد فرضی هر سمت (%)</label>
+          <input id="feePct" type="number" min="0" step="0.01" value="0.10" />
+          <label>لغزش فرضی هر سمت (%)</label>
+          <input id="slippagePct" type="number" min="0" step="0.01" value="0.05" />
+          <button id="saveSettings" class="primary full">ذخیره تنظیمات</button>
+          <button id="resetPaper" class="danger full">ریست کامل Paper Trading</button>
+        </div>
+        <div class="card note-card">
+          <h3>نصب روی آیفون</h3>
+          <p>پس از قرار گرفتن این نسخه روی HTTPS، در Safari گزینه Share → Add to Home Screen را بزن. بعد مثل اپ مستقل باز می‌شود.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav safe-bottom">
+      <button data-view="scannerView" class="nav active"><span>⌁</span>بازار</button>
+      <button data-view="positionsView" class="nav"><span>◎</span>معاملات</button>
+      <button data-view="historyView" class="nav"><span>◴</span>تاریخچه</button>
+      <button data-view="settingsView" class="nav"><span>⚙︎</span>تنظیمات</button>
+    </nav>
+  </div>
+
+  <dialog id="tradeDialog">
+    <form method="dialog" class="dialog-card" id="tradeForm">
+      <div class="dialog-head">
+        <div><div class="label">Paper Buy</div><h3 id="tradeSymbol">BTC-USD</h3></div>
+        <button value="cancel" class="icon-btn">×</button>
+      </div>
+      <div id="tradeSummary" class="summary-box"></div>
+      <label>مبلغ معامله (USD)</label>
+      <input id="tradeAmount" type="number" min="5" step="5" value="20" />
+      <div class="two-col">
+        <div><label>حد ضرر (%)</label><input id="stopPct" type="number" min="0.2" step="0.1" value="1.5" /></div>
+        <div><label>حد سود (%)</label><input id="takePct" type="number" min="0.2" step="0.1" value="2.5" /></div>
+      </div>
+      <button id="confirmPaperBuy" value="default" class="primary full">خرید آزمایشی</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
