@@ -17,7 +17,7 @@
     <header class="topbar safe-top">
       <div>
         <div class="brand">☀️ Sunny Trade AI</div>
-        <div class="sub" id="statusLine">نسخه آزمایشی آیفون • پول واقعی غیرفعال</div>
+        <div class="sub" id="statusLine">v0.3 • اسکن و معامله آزمایشی • بدون اتصال به سرمایه واقعی</div>
       </div>
       <button id="refreshBtn" class="icon-btn" aria-label="به‌روزرسانی">↻</button>
     </header>
@@ -47,10 +47,10 @@
 
       <section id="scannerView" class="view active">
         <div class="section-title">
-          <div><h2>اسکن بازار</h2><p>۸ بازار • تحلیل ۱ ساعته</p></div>
+          <div><h2>اسکن بازار</h2><p>بازارهای نقدشونده • داده واقعی</p></div>
           <button id="scanBtn" class="primary">تحلیل بازار</button>
         </div>
-        <div id="marketGrid" class="market-grid"></div>
+        <div class="card form-card" style="margin-bottom:12px"><div class="two-col"><div><label>بازه نمودار</label><select id="interval"><option value="60">۱ دقیقه</option><option value="300">۵ دقیقه</option><option value="900" selected>۱۵ دقیقه</option><option value="3600">۱ ساعت</option><option value="21600">۶ ساعت</option><option value="86400">روزانه</option></select></div><div><label>نمایش</label><select id="riskFilter"><option value="all">همه</option><option value="candidate">فرصت‌های بررسی</option><option value="wait">انتظار</option><option value="avoid">ضعیف برای خرید</option></select></div></div><label>جست‌وجوی نماد</label><input id="marketSearch" placeholder="مثلاً BTC یا SOL" autocomplete="off" /><p id="scannerInfo" class="small">در حال آماده‌سازی…</p><p class="small">اسکن اولیه حداکثر ۴۰ بازار دلاری فعال و نقدشونده بر اساس حجم گزارش‌شده است؛ این محدودیت برای رعایت سقف درخواست منبع داده است. امکان افزایش در نسخه سروری فراهم می‌شود.</p></div><div id="marketGrid" class="market-grid"></div>
       </section>
 
       <section id="positionsView" class="view">
@@ -98,18 +98,19 @@
         <div><div class="label">Paper Buy</div><h3 id="tradeSymbol">BTC-USD</h3></div>
         <button value="cancel" class="icon-btn">×</button>
       </div>
-      <div id="tradeSummary" class="summary-box"></div>
+      <div id="tradeSummary" class="summary-box"></div><div id="tradeChart" class="mini-chart"></div>
       <label>مبلغ معامله (USD)</label>
       <input id="tradeAmount" type="number" min="5" step="5" value="20" />
       <div class="two-col">
         <div><label>حد ضرر (%)</label><input id="stopPct" type="number" min="0.2" step="0.1" value="1.5" /></div>
         <div><label>حد سود (%)</label><input id="takePct" type="number" min="0.2" step="0.1" value="2.5" /></div>
       </div>
+      <div id="dollarPreview" class="summary-box" aria-live="polite"></div>
       <button id="confirmPaperBuy" value="default" class="primary full">خرید آزمایشی</button>
     </form>
   </dialog>
 
   <div id="toast" class="toast"></div>
-  <script src="app.js"></script>
+  <script src="app.js?v=031"></script>
 </body>
 </html>
