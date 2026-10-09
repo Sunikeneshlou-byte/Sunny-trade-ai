@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="Sunny Trade" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-192.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=060" />
   <title>Sunny Trade AI</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
     <header class="topbar safe-top">
       <div>
         <div class="brand">☀️ Sunny Trade AI</div>
-        <div class="sub" id="statusLine">v0.3 • اسکن و معامله آزمایشی • بدون اتصال به سرمایه واقعی</div>
+        <div class="sub" id="statusLine">v0.5 • اسکن و معامله آزمایشی • بدون اتصال به سرمایه واقعی</div>
       </div>
       <button id="refreshBtn" class="icon-btn" aria-label="به‌روزرسانی">↻</button>
     </header>
@@ -26,7 +26,7 @@
       <section class="hero card">
         <div class="hero-grid">
           <div>
-            <span class="label">سرمایه آزمایشی</span>
+            <span class="label">ارزش پرتفوی آزمایشی</span>
             <div class="big" id="equity">$1,000.00</div>
           </div>
           <div>
@@ -38,7 +38,7 @@
             <div class="medium" id="openCount">0</div>
           </div>
           <div>
-            <span class="label">حالت داده</span>
+            <span class="label">نوع داده</span>
             <div class="medium" id="dataModeLabel">Live</div>
           </div>
         </div>
@@ -47,15 +47,15 @@
 
       <section id="scannerView" class="view active">
         <div class="section-title">
-          <div><h2>اسکن بازار</h2><p>بازارهای نقدشونده • داده واقعی</p></div>
+          <div><h2>اسکن بازار</h2><p>فهرست ۲۵ گزینه برتر از حداکثر ۱۰۰ بازار • برای بررسی، نه تضمین سود</p></div>
           <button id="scanBtn" class="primary">تحلیل بازار</button>
         </div>
-        <div class="card form-card" style="margin-bottom:12px"><div class="two-col"><div><label>بازه نمودار</label><select id="interval"><option value="60">۱ دقیقه</option><option value="300">۵ دقیقه</option><option value="900" selected>۱۵ دقیقه</option><option value="3600">۱ ساعت</option><option value="21600">۶ ساعت</option><option value="86400">روزانه</option></select></div><div><label>نمایش</label><select id="riskFilter"><option value="all">همه</option><option value="candidate">فرصت‌های بررسی</option><option value="wait">انتظار</option><option value="avoid">ضعیف برای خرید</option></select></div></div><label>جست‌وجوی نماد</label><input id="marketSearch" placeholder="مثلاً BTC یا SOL" autocomplete="off" /><p id="scannerInfo" class="small">در حال آماده‌سازی…</p><p class="small">اسکن اولیه حداکثر ۴۰ بازار دلاری فعال و نقدشونده بر اساس حجم گزارش‌شده است؛ این محدودیت برای رعایت سقف درخواست منبع داده است. امکان افزایش در نسخه سروری فراهم می‌شود.</p></div><div id="marketGrid" class="market-grid"></div>
+        <div class="card form-card" style="margin-bottom:12px"><div class="two-col"><div><label>بازه نمودار</label><select id="interval"><option value="60">۱ دقیقه</option><option value="300">۵ دقیقه</option><option value="900" selected>۱۵ دقیقه</option><option value="3600">۱ ساعت</option><option value="21600">۶ ساعت</option><option value="86400">روزانه</option></select></div><div><label>نمایش</label><select id="riskFilter"><option value="all">همه</option><option value="candidate">فرصت‌های بررسی</option><option value="wait">انتظار</option><option value="avoid">ضعیف برای خرید</option></select></div></div><label>جست‌وجوی نماد</label><input id="marketSearch" placeholder="مثلاً BTC یا SOL" autocomplete="off" /><button id="searchIndividual" class="secondary full" type="button">دریافت مستقل نماد جست‌وجوشده</button><p id="scannerInfo" class="small">در حال آماده‌سازی…</p><p class="small">اسکن اولیه حداکثر ۱۰۰ بازار دلاری فعال و نقدشونده بر اساس حجم گزارش‌شده است؛ این محدودیت برای رعایت سقف درخواست منبع داده است. در هر بار فقط ۲۵ گزینه برتر رتبه‌بندی نمایش داده می‌شود؛ این‌ها پیشنهاد خرید قطعی نیستند. اسکن ۱۰۰ بازار ممکن است چند دقیقه طول بکشد یا به محدودیت API برسد.</p></div><div id="marketGrid" class="market-grid"></div>
       </section>
 
       <section id="positionsView" class="view">
         <div class="section-title"><div><h2>معاملات باز</h2><p>Paper Trading</p></div></div>
-        <div id="positionsList" class="stack"></div>
+        <button id="refreshPositions" class="primary full">بررسی قیمت تازه تمام معاملات باز</button><p class="small">پایش ۲۴ ساعته نیست. برای هر بررسی باید برنامه باز و آنلاین باشد.</p><div id="positionsList" class="stack"></div>
       </section>
 
       <section id="historyView" class="view">
@@ -75,7 +75,7 @@
           <label>لغزش فرضی هر سمت (%)</label>
           <input id="slippagePct" type="number" min="0" step="0.01" value="0.05" />
           <button id="saveSettings" class="primary full">ذخیره تنظیمات</button>
-          <button id="resetPaper" class="danger full">ریست کامل Paper Trading</button>
+          <button id="backupData" class="secondary full" type="button">دانلود نسخه پشتیبان معاملات</button><label>بازیابی نسخه پشتیبان (JSON)</label><input id="restoreData" type="file" accept="application/json,.json"/><button id="resetPaper" class="danger full">ریست کامل Paper Trading</button>
         </div>
         <div class="card note-card">
           <h3>نصب روی آیفون</h3>
@@ -121,6 +121,6 @@
   </dialog>
 
   <div id="toast" class="toast"></div>
-  <script src="app.js?v=040"></script>
+  <script src="app.js?v=060"></script>
 </body>
 </html>
