@@ -105,12 +105,22 @@
         <div><label>حد ضرر (%)</label><input id="stopPct" type="number" min="0.2" step="0.1" value="1.5" /></div>
         <div><label>حد سود (%)</label><input id="takePct" type="number" min="0.2" step="0.1" value="2.5" /></div>
       </div>
+      <label>سبک معامله و مهلت بررسی خروج</label>
+      <select id="holdPlan" style="width:100%;margin-bottom:10px">
+        <option value="auto">پیشنهاد مدت بر اساس بازه نمودار</option>
+        <option value="1800">۳۰ دقیقه (کوتاه‌مدت)</option>
+        <option value="14400">۴ ساعت (چندساعته)</option>
+        <option value="86400">۲۴ ساعت (روزیانه)</option>
+        <option value="259200">۳ روز (چندروزه)</option>
+      </select>
+      <label style="display:flex;align-items:center;gap:8px;margin:10px 0"><input id="trendExit" type="checkbox" checked style="width:20px;height:20px" /> خروج آزمایشی وقتی سیگنال خرید در اسکن تازه ضعیف می‌شود</label>
+      <div id="timingPreview" class="summary-box" aria-live="polite"></div>
       <div id="dollarPreview" class="summary-box" aria-live="polite"></div>
       <button id="confirmPaperBuy" value="default" class="primary full">خرید آزمایشی</button>
     </form>
   </dialog>
 
   <div id="toast" class="toast"></div>
-  <script src="app.js?v=031"></script>
+  <script src="app.js?v=040"></script>
 </body>
 </html>
